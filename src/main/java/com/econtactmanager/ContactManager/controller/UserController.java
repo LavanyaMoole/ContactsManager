@@ -1,0 +1,213 @@
+package com.econtactmanager.ContactManager.controller;
+
+import com.econtactmanager.ContactManager.helper.Message;
+import com.econtactmanager.ContactManager.model.Contact;
+import com.econtactmanager.ContactManager.model.User;
+import com.econtactmanager.ContactManager.repository.ContactRepository;
+import com.econtactmanager.ContactManager.repository.UserRepository;
+import com.econtactmanager.ContactManager.service.ContactService;
+import com.econtactmanager.ContactManager.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpSession;
+import java.io.File;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
+
+
+@Controller
+public class UserController {
+    @Autowired
+    private ContactRepository contactRepository;
+    @Autowired
+    private ContactService contactService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
+
+    @ModelAttribute
+    public void commonData(Model model, Principal principal){
+        String userName=principal.getName();
+        System.out.println("username "+userName);
+        User user= userService.getByUserName(userName);
+        System.out.println("User "+user);
+        model.addAttribute("user",user);
+
+    }
+
+//dashboard page
+    @GetMapping("/dashboard")
+    public String dashBoard(Model model, Principal principal){
+
+        model.addAttribute("title","dashboard e-Contact Manager");
+        return "dashboard";
+    }
+
+    //Add contact form
+    @GetMapping("/add-contact")
+    public String addContactForm(Model model){
+        model.addAttribute("title","Add-Contact-Form");
+        model.addAttribute("contact",new Contact());
+        return "addContactForm";
+
+    }
+
+    //processing add contact form
+    @PostMapping("/process_contact")
+    public String processingContact(@ModelAttribute Contact contact,
+                                    @RequestParam("profileImage") MultipartFile file
+                                    , Principal principal, HttpSession session)
+    {
+
+
+        try{
+            String name=principal.getName();
+            User user=userService.getByUserName(name);
+            //file uploading
+            if(file.isEmpty()){
+
+                contact.setImage("contact.png");
+
+            }
+            else{
+                contact.setImage(file.getOriginalFilename());
+                File file1=new ClassPathResource("static/img").getFile();
+              Path path=  Paths.get(file1.getAbsolutePath()+File.separator+file.getOriginalFilename());
+                Files.copy(file.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("Image Uploaded");
+            }
+            contact.setUser(user);
+            user.getContacts().add(contact);
+            userService.saveUser(user);
+            System.out.println("Contact Data"+contact);
+            System.out.println("contact added to database.");
+
+            session.setAttribute("message",new Message("your contact added!!!","success"));
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            session.setAttribute("message",new Message("something went wrong!!","danger"));
+        }
+        return "addContactForm";
+
+    }
+
+    //Get List of all contacts of user
+    @GetMapping("/view_contacts")
+    public String viewContacts(Model model,Principal principal){
+        model.addAttribute("title","view all your contacts");
+
+        String userName=principal.getName();
+        User user=userService.getByUserName(userName);
+
+       List<Contact> contacts= contactService.getAllUserContactsByUserId(user.getId());
+       model.addAttribute("contacts",contacts);
+        return "viewContacts";
+    }
+
+    //display particular contact of user
+    @GetMapping("/contact/{cId}")
+    public String displayParticularContact(@PathVariable("cId") Long cId,Model model,Principal principal){
+        Optional<Contact> contact=contactService.getContactById(cId);
+       Contact c= contact.get();
+
+       String userName=principal.getName();
+       User user=userService.getByUserName(userName);
+       if(user.getId()==c.getUser().getId()){
+       model.addAttribute("contact1",c);
+       model.addAttribute("title",c.getName());
+       }
+       return "contactDetail";
+    }
+
+    //delete the particular contact with Id
+    @GetMapping("/deleteContact/{cId}")
+    public String deleteContact(@PathVariable("cId") long cId,Model model,HttpSession session,Principal principal){
+       String userName=principal.getName();
+        User user=userService.getByUserName(userName);
+       Contact contact= contactRepository.findById(cId).get();
+       if(user.getId()==contact.getUser().getId()){
+           user.getContacts().remove(contact);
+           userService.saveUser(user);
+           System.out.println("User Id matched");
+       }
+       session.setAttribute("message",new Message("Contact deleted successfully!!!","success"));
+        return "viewContacts";
+
+    }
+    //updating particular contact of user
+    @PostMapping("/updateContact/{cId}")
+    public String UpdateContact(@PathVariable("cId") Long cId, Model model){
+        model.addAttribute("title","Update contact form");
+        Optional<Contact> optContact=contactService.getContactById(cId);
+        Contact contact=optContact.get();
+        model.addAttribute("contact",contact);
+        return "updateContactForm";
+
+    }
+
+    @PostMapping("/processUpdatedContact")
+    public String processUpdateContact(@ModelAttribute Contact contact,
+                                       @RequestParam("profileImage") MultipartFile multipartFile,
+                                       Model model,Principal principal,HttpSession session){
+
+        try{
+
+            Contact oldContactDetail= contactService.getContactById(contact.getcId()).get();
+            if(!multipartFile.isEmpty()){
+
+                //file have to  rewrite
+                //delete the photo first and then update new profile
+                File fileToBeDeleted=new ClassPathResource("static/img").getFile();
+                File oldFile=new File(fileToBeDeleted,oldContactDetail.getImage());
+                oldFile.delete();
+
+                //updating new profile
+                File file1=new ClassPathResource("static/img").getFile();
+                Path path=  Paths.get(file1.getAbsolutePath()+File.separator+multipartFile.getOriginalFilename());
+                Files.copy(multipartFile.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
+                contact.setImage(multipartFile.getOriginalFilename());
+            }
+            else{
+                contact.setImage(oldContactDetail.getImage());
+            }
+            String userName= principal.getName();
+            User user= userService.getByUserName(userName);
+            contact.setUser(user);
+            contactService.saveContact(contact);
+
+            session.setAttribute("message",new Message("Contact Updated successfully!!!","success"));
+        }
+        catch (Exception e){
+
+        }
+        return "redirect:/contact/"+contact.getcId();
+    }
+
+    //view user profile
+    @GetMapping("/viewProfile")
+    public String ViewProfile(Model model,Principal principal){
+
+        String userName=principal.getName();
+        User user=userService.getByUserName(userName);
+        model.addAttribute("user",user);
+        model.addAttribute("title","user profile page");
+
+        return "viewProfilePage";
+
+    }
+
+}
