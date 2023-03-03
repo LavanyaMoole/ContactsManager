@@ -37,7 +37,7 @@ public class SecurityConfiguration {
                 .antMatchers("/user/**").hasAuthority("ROLE_USER")
                 .antMatchers("/**").permitAll()
                 .and().formLogin().loginPage("/login")
-                .defaultSuccessUrl("/dashboard")
+                .defaultSuccessUrl("/user/dashboard")
                 .and().csrf().disable();
 return http.build();
 

@@ -27,6 +27,7 @@ import java.util.Optional;
 
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private ContactRepository contactRepository;

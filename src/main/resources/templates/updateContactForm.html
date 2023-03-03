@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-md-8 offset-md-2">
             <form action="#"  enctype="multipart/form-data" method="POST" th:object="${contact}"
-                  th:action="@{/processUpdatedContact}" class="mt-2"
+                  th:action="@{/user/processUpdatedContact}" class="mt-2"
             >
               <input type="hidden" th:value="${contact.cId}" name="cId">
               <div class="input-group mb-3">

@@ -19,6 +19,7 @@
 <!-- -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
+        <img  class="profile-photo" th:src="@{/img/cm.jfif}">
         <a class="navbar-brand" href="#">Contact Manager</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -48,17 +49,17 @@
 <!--starting Sidebar -->
 <div class="sidebar mt-2">
     <span onclick="toggleSidebar()" class="crossBtn mt-4">&times;</span> <a
-        href="#" th:href="@{/dashboard}" class="item">
+        href="#" th:href="@{/user/dashboard}" class="item">
     <i
         class="fas fa-home"></i>Dashboard</a> <a href="#"
-                                             th:href="@{/view_contacts}" class="item"><i
+                                             th:href="@{/user/view_contacts}" class="item"><i
         class="fas fa-id-card-alt"></i> View Contacts</a> <a href="#"
-                                                             th:href="@{/add-contact}" class="item"><i
+                                                             th:href="@{/user/add-contact}" class="item"><i
         class="fas fa-pencil-alt"></i> Add Contact</a>
-    <a href="#" th:href="@{/viewProfile}" class="item"><i class="fas fa-user-circle"></i> Your Profile</a>
+    <a href="#" th:href="@{/user/viewProfile}" class="item"><i class="fas fa-user-circle"></i> Your Profile</a>
     <a href="#" class="item"><i
-            class="fas fa-cogs"></i> Settings</a> <a href="#" th:href="@{/logout}"
-                                                     class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            class="fas fa-cogs"></i> Settings</a>
+    <a href="#" th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
 
     <div class="divider"></div>
 

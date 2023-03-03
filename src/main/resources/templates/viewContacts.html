@@ -28,15 +28,15 @@
            <span th:text="${contact.name}"></span>
          </td>
          <td>
-           <a href="#" th:href="@{'/contact/'+${contact.cId}}">
+           <a href="#" th:href="@{'/user/contact/'+${contact.cId}}">
              <span th:text="${contact.email}"></span>
            </a>
          </td>
          <td th:text="${contact.phone}">@mdo</td>
          <td class="text-center">
-           <a href="#" th:href="@{'/deleteContact/'+${contact.cId}}"  class="btn btn-danger">Delete</a>
+           <a href="#" th:href="@{'/user/deleteContact/'+${contact.cId}}"  class="btn btn-danger">Delete</a>
 
-           <form th:action="@{'/updateContact/'+${contact.cId}}" method="POST" class="mt-3"
+           <form th:action="@{'/user/updateContact/'+${contact.cId}}" method="POST" class="mt-3"
            ><button type="submit" class="btn btn-success">Update</button></form>
 
          </td>
