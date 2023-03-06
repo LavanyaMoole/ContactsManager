@@ -16,9 +16,6 @@ public interface ContactRepository extends JpaRepository<Contact,Long> {
     @Query("from Contact as c where c.user.id= :id")
     public List<Contact> findContactsByUserId(@Param("id") long userId);
 
-
-
-
     @Modifying
     @Transactional
     @Query("DELETE Contact c WHERE c.cId = ?1")

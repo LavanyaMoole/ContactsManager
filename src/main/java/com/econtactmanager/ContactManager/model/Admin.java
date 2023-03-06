@@ -7,12 +7,13 @@ import java.util.List;
 @Entity
 @Table(name="ADMIN")
 public class Admin {
-    public Admin() {
+    public Admin()
+    {
         super();
     }
 
     @Id
-    @GeneratedValue(strategy =GenerationType.AUTO )
+    @GeneratedValue(strategy =GenerationType.IDENTITY )
     private long AdminId;
     @Column
     private String name;

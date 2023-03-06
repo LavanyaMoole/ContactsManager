@@ -12,13 +12,22 @@ import java.util.Optional;
 @Transactional
 public interface ContactService {
 
+    //saving contact
     public void saveContact(Contact contact);
 
+    //get all the contacts of the user
     public List<Contact> getAllUserContactsByUserId(long userId);
 
+    //get contact by Id
     public Optional<Contact> getContactById(long cId);
 
+    //delete contact from user contact list
     public void deleteContact(User user, Contact contact);
 
+
     public void deleteUserContactById(long cId);
+
+    public long numberOfContactsPresent();
+
+    public List<Contact> getAllContacts();
 }

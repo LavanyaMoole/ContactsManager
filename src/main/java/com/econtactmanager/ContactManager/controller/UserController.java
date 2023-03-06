@@ -39,7 +39,8 @@ public class UserController {
     private UserRepository userRepository;
 
     @ModelAttribute
-    public void commonData(Model model, Principal principal){
+    public void commonData(Model model, Principal principal)
+    {
         String userName=principal.getName();
         System.out.println("username "+userName);
         User user= userService.getByUserName(userName);
@@ -50,22 +51,23 @@ public class UserController {
 
 //dashboard page
     @GetMapping("/dashboard")
-    public String dashBoard(Model model, Principal principal){
-
+    public String dashBoard(Model model, Principal principal)
+    {
         model.addAttribute("title","dashboard e-Contact Manager");
-        return "dashboard";
+        return "/user/dashboard";
     }
 
-    //Add contact form
+    //Add contact form for adding user contacts
     @GetMapping("/add-contact")
-    public String addContactForm(Model model){
+    public String addContactForm(Model model)
+    {
         model.addAttribute("title","Add-Contact-Form");
         model.addAttribute("contact",new Contact());
-        return "addContactForm";
+        return "/user/addContactForm";
 
     }
 
-    //processing add contact form
+    //processing add contact form method when the add contact form submitted
     @PostMapping("/process_contact")
     public String processingContact(@ModelAttribute Contact contact,
                                     @RequestParam("profileImage") MultipartFile file
@@ -73,16 +75,20 @@ public class UserController {
     {
 
 
-        try{
+        try
+        {
             String name=principal.getName();
             User user=userService.getByUserName(name);
-            //file uploading
-            if(file.isEmpty()){
-
+            //profile uploading for contact
+            if(file.isEmpty())
+            {
+                //if nothing is set , default image is set
                 contact.setImage("contact.png");
 
             }
-            else{
+            else
+            {
+                //setting the selected profile for contact using file
                 contact.setImage(file.getOriginalFilename());
                 File file1=new ClassPathResource("static/img").getFile();
               Path path=  Paths.get(file1.getAbsolutePath()+File.separator+file.getOriginalFilename());
@@ -98,17 +104,19 @@ public class UserController {
             session.setAttribute("message",new Message("your contact added!!!","success"));
 
         }
-        catch(Exception e){
+        catch(Exception e)
+        {
             e.printStackTrace();
             session.setAttribute("message",new Message("something went wrong!!","danger"));
         }
-        return "addContactForm";
+        return "/user/addContactForm";
 
     }
 
     //Get List of all contacts of user
     @GetMapping("/view_contacts")
-    public String viewContacts(Model model,Principal principal){
+    public String viewContacts(Model model,Principal principal)
+    {
         model.addAttribute("title","view all your contacts");
 
         String userName=principal.getName();
@@ -116,60 +124,72 @@ public class UserController {
 
        List<Contact> contacts= contactService.getAllUserContactsByUserId(user.getId());
        model.addAttribute("contacts",contacts);
-        return "viewContacts";
+        return "/user/viewContacts";
     }
 
     //display particular contact of user
     @GetMapping("/contact/{cId}")
-    public String displayParticularContact(@PathVariable("cId") Long cId,Model model,Principal principal){
+    public String displayParticularContact(@PathVariable("cId") Long cId,Model model,
+                                           Principal principal)
+    {
         Optional<Contact> contact=contactService.getContactById(cId);
        Contact c= contact.get();
 
        String userName=principal.getName();
        User user=userService.getByUserName(userName);
-       if(user.getId()==c.getUser().getId()){
+       //if userId and contact userId is same
+       if(user.getId()==c.getUser().getId())
+       {
        model.addAttribute("contact1",c);
        model.addAttribute("title",c.getName());
        }
-       return "contactDetail";
+       return "/user/contactDetail";
     }
 
     //delete the particular contact with Id
     @GetMapping("/deleteContact/{cId}")
-    public String deleteContact(@PathVariable("cId") long cId,Model model,HttpSession session,Principal principal){
+    public String deleteContact(@PathVariable("cId") long cId,Model model,
+                                HttpSession session,Principal principal)
+    {
        String userName=principal.getName();
         User user=userService.getByUserName(userName);
        Contact contact= contactRepository.findById(cId).get();
-       if(user.getId()==contact.getUser().getId()){
-           user.getContacts().remove(contact);
+        //if userId and contact userId is same then remove the contact from user contacts list
+       if(user.getId()==contact.getUser().getId())
+       {
+           contactService.deleteContact(user,contact);
+           //user.getContacts().remove(contact);
            userService.saveUser(user);
            System.out.println("User Id matched");
        }
        session.setAttribute("message",new Message("Contact deleted successfully!!!","success"));
-        return "viewContacts";
+        return "/user/viewContacts";
 
     }
     //updating particular contact of user
     @PostMapping("/updateContact/{cId}")
-    public String UpdateContact(@PathVariable("cId") Long cId, Model model){
+    public String UpdateContact(@PathVariable("cId") Long cId, Model model)
+    {
         model.addAttribute("title","Update contact form");
         Optional<Contact> optContact=contactService.getContactById(cId);
         Contact contact=optContact.get();
         model.addAttribute("contact",contact);
-        return "updateContactForm";
+        return "/user/updateContactForm";
 
     }
 
+    //processing or saving the updated contact
     @PostMapping("/processUpdatedContact")
     public String processUpdateContact(@ModelAttribute Contact contact,
                                        @RequestParam("profileImage") MultipartFile multipartFile,
-                                       Model model,Principal principal,HttpSession session){
+                                       Model model,Principal principal,HttpSession session)
+    {
 
         try{
 
             Contact oldContactDetail= contactService.getContactById(contact.getcId()).get();
-            if(!multipartFile.isEmpty()){
-
+            if(!multipartFile.isEmpty())
+            {
                 //file have to  rewrite
                 //delete the photo first and then update new profile
                 File fileToBeDeleted=new ClassPathResource("static/img").getFile();
@@ -182,7 +202,8 @@ public class UserController {
                 Files.copy(multipartFile.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
                 contact.setImage(multipartFile.getOriginalFilename());
             }
-            else{
+            else
+            {
                 contact.setImage(oldContactDetail.getImage());
             }
             String userName= principal.getName();
@@ -192,22 +213,23 @@ public class UserController {
 
             session.setAttribute("message",new Message("Contact Updated successfully!!!","success"));
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
 
         }
-        return "redirect:/contact/"+contact.getcId();
+        return "redirect:/user/contact/"+contact.getcId();
     }
 
     //view user profile
     @GetMapping("/viewProfile")
-    public String ViewProfile(Model model,Principal principal){
-
+    public String ViewProfile(Model model,Principal principal)
+    {
         String userName=principal.getName();
         User user=userService.getByUserName(userName);
         model.addAttribute("user",user);
         model.addAttribute("title","user profile page");
 
-        return "viewProfilePage";
+        return "/user/viewProfilePage";
 
     }
 

@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Entity
 @Table(name="CONTACT")
 public class Contact {
-
-    public  Contact() {
+    public  Contact()
+    {
 
     }
 
@@ -26,7 +26,7 @@ public class Contact {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long cId;
     @Column(nullable = false)
     private String name;

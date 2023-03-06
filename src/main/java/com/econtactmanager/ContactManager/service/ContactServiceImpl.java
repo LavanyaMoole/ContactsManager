@@ -43,8 +43,20 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void deleteUserContactById(long cId){
        Contact c= contactRepository.findById(cId).get();
-       c.setUser(null);
        contactRepository.delete(c);
 
     }
+
+    @Override
+    public long numberOfContactsPresent() {
+        return contactRepository.count();
+    }
+
+    @Override
+    public List<Contact> getAllContacts() {
+        return contactRepository.findAll();
+    }
+
+
+
 }

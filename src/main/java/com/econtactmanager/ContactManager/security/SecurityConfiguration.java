@@ -38,8 +38,10 @@ public class SecurityConfiguration {
                 .antMatchers("/**").permitAll()
                 .and().formLogin().loginPage("/login")
                 .defaultSuccessUrl("/user/dashboard")
+
                 .and().csrf().disable();
 return http.build();
+
 
 
     }

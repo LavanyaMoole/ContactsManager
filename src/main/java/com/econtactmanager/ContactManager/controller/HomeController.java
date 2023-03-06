@@ -23,109 +23,127 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 @Controller
-public class HomeController {
-
+public class HomeController
+{
     @Autowired
     private AdminService adminService;
     @Autowired
     private UserServiceImpl userService;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder1;
+
     @Autowired
     private UserRepository userRepository;
 
     @RequestMapping("/")
-    public String home(Model model){
+    public String home(Model model)
+    {
         model.addAttribute("title","Home e-Contact Manager");
         return "home";
     }
     @RequestMapping("/about")
-    public String about(Model model){
+    public String about(Model model)
+    {
         model.addAttribute("title","About e-Contact Manager");
         return "about";
     }
+    //user signup page
     @RequestMapping("/signup")
-    public String signUp(Model model){
+    public String signUp(Model model)
+    {
         model.addAttribute("title","Signup e-Contact Manager");
         model.addAttribute("user",new User());
         return "signup";
     }
+    //saving user details after registration
 @PostMapping("/do_register")
-    public String registerUser(@ModelAttribute("user") User user, @RequestParam(value = "agreement",defaultValue = "false") boolean agreement, Model model,
+    public String registerUser(@ModelAttribute("user") User user,
+                               @RequestParam(value = "agreement",defaultValue = "false") boolean agreement,
+                               Model model,
                                HttpSession session,
-                               @RequestParam("profileImage") MultipartFile file){
+                               @RequestParam("profileImage") MultipartFile file)
+{
 
         String email="admin@gmail.com";
 Admin admin=adminService.getAdminByEmail(email);
 
 
-    try {
-        if(file.isEmpty()){
+    try
+    {
+        if(file.isEmpty())
+        {
 
             user.setImageUrl("contact.png");
 
         }
-        else{
+        else
+        {
             user.setImageUrl(file.getOriginalFilename());
             File file1=new ClassPathResource("static/img").getFile();
             Path path=  Paths.get(file1.getAbsolutePath()+File.separator+file.getOriginalFilename());
             Files.copy(file.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
             System.out.println("Image Uploaded");
         }
-        if(!agreement){
+        //for terms and conditions in registration page
+        if(!agreement)
+        {
             System.out.println("you have not agreed terms and conditions");
             throw new Exception("you have not agreed terms and conditions");
 
         }
         user.setRole("ROLE_USER");
 
-        user.setAdmin(admin);
+       user.setAdmin(admin);
         user.setEnabled(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
+        //if the terms and conditions are checked
         System.out.println("Agreement"+agreement);
         System.out.println("User"+user);
         User result=userService.saveUser(user);
         model.addAttribute("user",new User());
         session.setAttribute("message",new Message("Successfully Registered!!","alert-success"));
-
         return "signup";
 
-    }catch(Exception e){
+    }catch(Exception e)
+    {
         e.printStackTrace();
         model.addAttribute("user",user);
         session.setAttribute("message",new Message("something went wrong!! "+e.getMessage(),"alert-danger"));
         return "signup";
     }
     }
-
+//user login
     @GetMapping("/login")
-    public String userLogin(Model model){
+    public String userLogin(Model model)
+    {
         model.addAttribute("title","user login Contact Manager");
         return "login";
 
     }
-
+//admin login
     @GetMapping("/adminLogin")
-    public String adminLogin(Model model){
+    public String adminLogin(Model model)
+    {
         model.addAttribute("title","Admin login Contact Manager");
         return "adminLogin";
 
     }
-
+    //admin signup page
     @RequestMapping("/adminSignup")
-    public String adminSignUp(Model model){
+    public String adminSignUp(Model model)
+    {
         model.addAttribute("title","Signup e-Contact Manager");
         model.addAttribute("admin",new Admin());
         return "adminSignup";
     }
-
-    @PostMapping("/AdminRegisterProcess")
-    public String registerAdmin(@ModelAttribute("admin") Admin admin, @RequestParam(value = "agreement",defaultValue = "false") boolean agreement, Model model,
+//saving admin details after registration
+   @PostMapping("/AdminRegisterProcess")
+    public String registerAdmin(@ModelAttribute("admin") Admin admin,
+                                @RequestParam(value = "agreement",defaultValue = "false") boolean agreement,
+                                Model model,
                                HttpSession session,
-                               @RequestParam("profileImage") MultipartFile file){
+                               @RequestParam("profileImage") MultipartFile file)
+   {
 
         try {
             if(file.isEmpty()){
@@ -148,7 +166,7 @@ Admin admin=adminService.getAdminByEmail(email);
             admin.setRole("ROLE_ADMIN");
 
 
-            admin.setPassword(passwordEncoder1.encode(admin.getPassword()));
+            admin.setPassword(passwordEncoder.encode(admin.getPassword()));
 
             System.out.println("Agreement"+agreement);
             System.out.println("Admin"+admin);
