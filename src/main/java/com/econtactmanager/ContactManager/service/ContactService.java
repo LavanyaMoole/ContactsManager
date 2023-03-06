@@ -2,6 +2,7 @@ package com.econtactmanager.ContactManager.service;
 
 import com.econtactmanager.ContactManager.model.Contact;
 import com.econtactmanager.ContactManager.model.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

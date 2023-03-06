@@ -7,6 +7,7 @@ import com.econtactmanager.ContactManager.repository.ContactRepository;
 import com.econtactmanager.ContactManager.repository.UserRepository;
 import com.econtactmanager.ContactManager.service.ContactService;
 import com.econtactmanager.ContactManager.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
     @Autowired
     private ContactRepository contactRepository;
@@ -54,6 +56,7 @@ public class UserController {
     public String dashBoard(Model model, Principal principal)
     {
         model.addAttribute("title","dashboard e-Contact Manager");
+        log.info("user dashboard");
         return "/user/dashboard";
     }
 
@@ -63,7 +66,9 @@ public class UserController {
     {
         model.addAttribute("title","Add-Contact-Form");
         model.addAttribute("contact",new Contact());
+        log.info("add contact method executed");
         return "/user/addContactForm";
+
 
     }
 
@@ -84,6 +89,7 @@ public class UserController {
             {
                 //if nothing is set , default image is set
                 contact.setImage("contact.png");
+                log.info("If the file is empty, it will set the image to contact.png");
 
             }
             else
@@ -93,13 +99,14 @@ public class UserController {
                 File file1=new ClassPathResource("static/img").getFile();
               Path path=  Paths.get(file1.getAbsolutePath()+File.separator+file.getOriginalFilename());
                 Files.copy(file.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("Image Uploaded");
+                log.info("Image Uploaded successfully");
             }
             contact.setUser(user);
             user.getContacts().add(contact);
             userService.saveUser(user);
             System.out.println("Contact Data"+contact);
-            System.out.println("contact added to database.");
+            log.info("contact added to database.");
+            log.info("process contact method executed");
 
             session.setAttribute("message",new Message("your contact added!!!","success"));
 
@@ -124,6 +131,7 @@ public class UserController {
 
        List<Contact> contacts= contactService.getAllUserContactsByUserId(user.getId());
        model.addAttribute("contacts",contacts);
+       log.info("List of user contacts to view");
         return "/user/viewContacts";
     }
 
@@ -143,6 +151,7 @@ public class UserController {
        model.addAttribute("contact1",c);
        model.addAttribute("title",c.getName());
        }
+       log.info("Particular contact of user is displayed");
        return "/user/contactDetail";
     }
 
@@ -158,9 +167,10 @@ public class UserController {
        if(user.getId()==contact.getUser().getId())
        {
            contactService.deleteContact(user,contact);
-           //user.getContacts().remove(contact);
+           user.getContacts().remove(contact);
            userService.saveUser(user);
-           System.out.println("User Id matched");
+           log.info("User Id and contact's user Id matched");
+           log.info("Particular contact of user is deleted");
        }
        session.setAttribute("message",new Message("Contact deleted successfully!!!","success"));
         return "/user/viewContacts";
@@ -174,6 +184,7 @@ public class UserController {
         Optional<Contact> optContact=contactService.getContactById(cId);
         Contact contact=optContact.get();
         model.addAttribute("contact",contact);
+        log.info("Contact for update");
         return "/user/updateContactForm";
 
     }
@@ -210,7 +221,7 @@ public class UserController {
             User user= userService.getByUserName(userName);
             contact.setUser(user);
             contactService.saveContact(contact);
-
+            log.info("Contact updated Successfully!!!");
             session.setAttribute("message",new Message("Contact Updated successfully!!!","success"));
         }
         catch (Exception e)
@@ -228,7 +239,7 @@ public class UserController {
         User user=userService.getByUserName(userName);
         model.addAttribute("user",user);
         model.addAttribute("title","user profile page");
-
+        log.info("user viewed profile");
         return "/user/viewProfilePage";
 
     }

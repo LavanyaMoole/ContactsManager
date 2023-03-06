@@ -21,3 +21,11 @@ alert("Are you sure you want to delete this contact!!!");
 
 
 };
+
+function confirm_Delete(){
+let res=confirm("Are you sure you want delete?");
+if(res==true){
+return true;}
+else{
+return false;}
+}

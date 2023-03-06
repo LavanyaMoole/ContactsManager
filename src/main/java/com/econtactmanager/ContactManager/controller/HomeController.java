@@ -7,6 +7,7 @@ import com.econtactmanager.ContactManager.repository.UserRepository;
 import com.econtactmanager.ContactManager.service.AdminService;
 import com.econtactmanager.ContactManager.service.UserService;
 import com.econtactmanager.ContactManager.service.UserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,6 +24,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 @Controller
+@Slf4j
 public class HomeController
 {
     @Autowired

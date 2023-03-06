@@ -35,7 +35,7 @@
          </td>
          <td th:text="${contact.phone}"></td>
          <td class="text-center">
-           <a href="#" onclick="deleteAlert()" th:href="@{'/user/deleteContact/'+${contact.cId}}"  id="delete" class="btn btn-danger">Delete
+           <a href="#" onclick="return confirm_Delete()" th:href="@{'/user/deleteContact/'+${contact.cId}}"  id="delete" class="btn btn-danger">Delete
            </a>
 
            <form th:action="@{'/user/updateContact/'+${contact.cId}}" method="POST" class="mt-3"
