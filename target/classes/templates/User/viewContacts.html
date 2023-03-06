@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" th:replace="dash_base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="sweetalert2.min.css">
+</head>
+<body>
+<section>
+ <div class="card mr-3">
+   <div class="card-body">
+     <h1 class="text-center">Your Profile Details!!!</h1>
+
+     <table class="table table-hover table-bordered">
+       <thead class="text-center">
+       <tr>
+         <th scope="col">#Id</th>
+         <th scope="col">Name</th>
+         <th scope="col">Email-Id</th>
+         <th scope="col">Phone</th>
+         <th scope="col">Action</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr th:each="contact:${contacts}">
+         <th scope="row" th:text="${contact.cId}">1</th>
+         <td>
+           <img src=""  class="profile-photo" th:src="@{'/img/'+${contact.image}}" alt="profile photo">
+           <span th:text="${contact.name}"></span>
+         </td>
+         <td>
+           <a href="#" th:href="@{'/user/contact/'+${contact.cId}}">
+             <span th:text="${contact.email}"></span>
+           </a>
+         </td>
+         <td th:text="${contact.phone}"></td>
+         <td class="text-center">
+           <a href="#" onclick="deleteAlert()" th:href="@{'/user/deleteContact/'+${contact.cId}}"  id="delete" class="btn btn-danger">Delete
+           </a>
+
+           <form th:action="@{'/user/updateContact/'+${contact.cId}}" method="POST" class="mt-3"
+           ><button type="submit" class="btn btn-success">Update</button></form>
+
+         </td>
+       </tr>
+
+       </tbody>
+     </table>
+
+   </div>
+
+ </div>
+</section>
+<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

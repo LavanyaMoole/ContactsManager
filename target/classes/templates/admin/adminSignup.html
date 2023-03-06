@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>signup Title</title>
+</head>
+<body>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="my-card mt-3">
+          <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-primary" role="alert">
+            <p class="text-center" th:text="${session.message.content}"></p>
+            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+          </div>
+          <h1 class="text-center">Register Here!!!</h1>
+          <form action="" th:action="@{/AdminRegisterProcess}" method="post" th:object="${admin}" enctype="multipart/form-data">
+            <!-- name-->
+            <div class="mb-3">
+              <label for="name-field" class="form-label">Your Name</label>
+              <input  name="name" type="text" class="form-control" id="name-field" aria-describedby="emailHelp"
+                      placeholder="Enter Here" required th:value="${admin.name}" maxlength="20" minlength="5">
+
+            </div>
+            <!--email -->
+            <div class="mb-3">
+              <label for="email-field" class="form-label">Your email</label>
+              <input  name="email" type="email" class="form-control" id="email-field" aria-describedby="emailHelp"
+                      placeholder="Enter Your email" required th:value="${admin.email}">
+
+            </div>
+            <!--password -->
+            <div class="mb-3">
+              <label for="password-field" class="form-label">Your password</label>
+              <input  name="password" type="password" class="form-control" id="password-field" aria-describedby="emailHelp"
+                      placeholder="Enter Your password" required th:value="${admin.password}" minlength="8">
+
+            </div>
+
+            <div class="form-floating">
+              <textarea name="about" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+              <label for="floatingTextarea2">Enter something about yourself</label>
+            </div>
+            <div class="input-group mt-3 mb-3">
+              <label class="input-group-text" for="inputGroupFile01">Upload profile pic</label>
+              <input type="file" name="profileImage" class="form-control" id="inputGroupFile01">
+            </div>
+            <div class="form-group form-check">
+              <input  class="form-check-input" type="checkbox" name="agreement" id="agreement">
+              <label class="form-check-label" for="agreement">Accept terms and conditions
+              </label>
+            </div>
+            <div class="container text-center">
+              <button type ="submit" class="btn bg-primary btn-block">Submit</button>
+              <button type ="reset" class="btn btn-warning btn-block">Reset</button>
+
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>

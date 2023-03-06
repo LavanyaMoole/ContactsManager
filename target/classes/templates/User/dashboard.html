@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" th:replace="dash_base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<section>
+
+  <div class="card" style="width: 18rem;">
+    <img th:src="@{/img/dash.jfif}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">save here!!! </h5>
+      <p class="card-text">Start collecting your contacts.</p>
+      <a href="#"
+         th:href="@{/user/add-contact}" class="btn btn-primary">Add Contact</a>
+    </div>
+  </div>
+
+  <div class="card mt-5" style="width: 18rem;">
+    <img th:src="@{/img/contactlist.webp}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">List of contacts</h5>
+      <p class="card-text">Get the list of your saved contacts.</p>
+      <a href="#"
+         th:href="@{/user/view_contacts}" class="btn btn-primary">View Contacts</a>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>
