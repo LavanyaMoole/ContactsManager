@@ -55,6 +55,7 @@ public class HomeController
     {
         model.addAttribute("title","Signup e-Contact Manager");
         model.addAttribute("user",new User());
+        log.info("user signup form");
         return "signup";
     }
     //saving user details after registration
