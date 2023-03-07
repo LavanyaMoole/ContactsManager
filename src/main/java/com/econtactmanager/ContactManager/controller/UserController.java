@@ -240,7 +240,7 @@ public class UserController {
         model.addAttribute("user",user);
         model.addAttribute("title","user profile page");
         log.info("user viewed profile");
-        return "/user/viewProfilePage";
+        return "viewProfilePage";
 
     }
 

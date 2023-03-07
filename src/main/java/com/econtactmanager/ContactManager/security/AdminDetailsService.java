@@ -14,8 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AdminDetailsService implements UserDetailsService {
-
+public class AdminDetailsService  {
+/*
     @Autowired
     private AdminRepository adminRepository;
 
@@ -31,5 +31,5 @@ public class AdminDetailsService implements UserDetailsService {
         }
         AdminCustomUserDetails adminCustomUserDetails=new AdminCustomUserDetails(admin);
         return adminCustomUserDetails;
-    }
+    }*/
 }

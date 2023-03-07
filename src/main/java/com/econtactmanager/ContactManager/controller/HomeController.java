@@ -130,7 +130,7 @@ Admin admin=adminService.getAdminByEmail(email);
     public String adminLogin(Model model)
     {
         model.addAttribute("title","Admin login Contact Manager");
-        return "adminLogin";
+        return "/Admin/adminLogin";
 
     }
     //admin signup page
@@ -139,7 +139,7 @@ Admin admin=adminService.getAdminByEmail(email);
     {
         model.addAttribute("title","Signup e-Contact Manager");
         model.addAttribute("admin",new Admin());
-        return "adminSignup";
+        return "/Admin/adminSignup";
     }
 //saving admin details after registration
    @PostMapping("/AdminRegisterProcess")
@@ -176,16 +176,16 @@ Admin admin=adminService.getAdminByEmail(email);
             System.out.println("Agreement"+agreement);
             System.out.println("Admin"+admin);
             Admin result=adminService.saveAdmin(admin);
-            model.addAttribute("user",new User());
+            model.addAttribute("admin",new Admin());
             session.setAttribute("message",new Message("Successfully Registered!!","alert-success"));
 
-            return "signup";
+            return "/Admin/adminSignup";
 
         }catch(Exception e){
             e.printStackTrace();
-            model.addAttribute("user",admin);
+            model.addAttribute("admin",admin);
             session.setAttribute("message",new Message("something went wrong!! "+e.getMessage(),"alert-danger"));
-            return "signup";
+            return "/Admin/adminSignup";
         }
 
 

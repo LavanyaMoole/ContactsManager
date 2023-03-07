@@ -8,9 +8,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public class AdminCustomUserDetails implements UserDetails {
-
+public class AdminCustomUserDetails{ //implements UserDetails
+/*
     public AdminCustomUserDetails(Admin admin) {
+
         this.admin = admin;
     }
 
@@ -22,12 +23,14 @@ public class AdminCustomUserDetails implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
+    public String getPassword()
+    {
         return admin.getPassword();
     }
 
     @Override
-    public String getUsername() {
+    public String getUsername()
+    {
         return admin.getEmail();
     }
 
@@ -49,5 +52,5 @@ public class AdminCustomUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
+    }*/
 }
