@@ -37,12 +37,14 @@ public class HomeController
     @Autowired
     private UserRepository userRepository;
 
+    //home page
     @RequestMapping("/")
     public String home(Model model)
     {
         model.addAttribute("title","Home e-Contact Manager");
         return "home";
     }
+    //About page
     @RequestMapping("/about")
     public String about(Model model)
     {

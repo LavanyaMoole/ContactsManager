@@ -10,12 +10,14 @@ public class AdminServiceImpl implements AdminService{
     @Autowired
     private AdminRepository adminRepository;
 
+    //save admin
     @Override
     public Admin saveAdmin(Admin admin) {
         adminRepository.save(admin);
         return admin;
     }
 
+    //get admin by admin email
     @Override
     public Admin getAdminByEmail(String email) {
        return adminRepository.getAdminByUserName(email);

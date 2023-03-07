@@ -25,10 +25,9 @@ public interface ContactService {
     //delete contact from user contact list
     public void deleteContact(User user, Contact contact);
 
-
-    public void deleteUserContactById(long cId);
-
+    //total number of contacts
     public long numberOfContactsPresent();
 
+    //get all the contacts from contact Repository
     public List<Contact> getAllContacts();
 }

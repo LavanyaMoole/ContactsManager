@@ -17,41 +17,40 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     private ContactRepository contactRepository;
 
+    //save contacts to the contact repository
     @Override
     public void saveContact(Contact contact) {
         contactRepository.save(contact);
     }
 
+    //get the list of all user contacts using userId of Contact
     @Override
     public List<Contact> getAllUserContactsByUserId(long userId) {
         return contactRepository.findContactsByUserId(userId);
 
     }
 
+    //get the contact by contactId
     @Override
     public Optional<Contact> getContactById(long cId) {
       return  contactRepository.findById(cId);
 
     }
 
+    //delete the contact from the list of contacts in User
     @Override
     public void deleteContact(User user, Contact contact) {
      user.getContacts().remove(contact);
 
     }
 
-    @Override
-    public void deleteUserContactById(long cId){
-       Contact c= contactRepository.findById(cId).get();
-       contactRepository.delete(c);
-
-    }
-
+    //count of number of contacts
     @Override
     public long numberOfContactsPresent() {
         return contactRepository.count();
     }
 
+    //get all the contacts from contact Repository
     @Override
     public List<Contact> getAllContacts() {
         return contactRepository.findAll();
