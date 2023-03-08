@@ -114,3 +114,97 @@
 2023-03-08 09:00:05.375  INFO 18172 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-03-08 09:00:05.375  INFO 18172 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
 2023-03-08 09:00:51.949  INFO 18172 --- [http-nio-8080-exec-7] c.e.C.controller.HomeController          : user signup form
+2023-03-08 11:19:56.692  INFO 18172 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-08 11:19:56.712  INFO 18172 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-08 11:19:56.718  INFO 18172 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-08 11:20:02.362  INFO 37892 --- [restartedMain] c.e.C.ContactManagerApplication          : Starting ContactManagerApplication using Java 19.0.1 on PSNYXZHCG261 with PID 37892 (C:\Users\Learner_XZHCG261\IdeaProjects\ContactsManager\target\classes started by Learner_XZHCG261 in C:\Users\Learner_XZHCG261\IdeaProjects\ContactsManager)
+2023-03-08 11:20:02.363  INFO 37892 --- [restartedMain] c.e.C.ContactManagerApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-03-08 11:20:02.442  INFO 37892 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-03-08 11:20:02.442  INFO 37892 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-03-08 11:20:02.967  INFO 37892 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-08 11:20:03.027  INFO 37892 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 3 JPA repository interfaces.
+2023-03-08 11:20:04.014  INFO 37892 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-08 11:20:04.028  INFO 37892 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-08 11:20:04.028  INFO 37892 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-08 11:20:04.125  INFO 37892 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-08 11:20:04.125  INFO 37892 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1683 ms
+2023-03-08 11:20:04.349  INFO 37892 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-08 11:20:04.414  INFO 37892 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-08 11:20:04.571  INFO 37892 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-08 11:20:04.661  INFO 37892 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-08 11:20:05.147  INFO 37892 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-08 11:20:05.166  INFO 37892 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-03-08 11:20:05.849  INFO 37892 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-08 11:20:05.855  INFO 37892 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-08 11:20:06.543  INFO 37892 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6ceef9e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2de1dc4b, org.springframework.security.web.context.SecurityContextPersistenceFilter@292f1f20, org.springframework.security.web.header.HeaderWriterFilter@43b781a8, org.springframework.security.web.authentication.logout.LogoutFilter@ae51234, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@40fd7f2b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@11920933, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7e6a5a32, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2ae91a1b, org.springframework.security.web.session.SessionManagementFilter@19011811, org.springframework.security.web.access.ExceptionTranslationFilter@448c8b98, org.springframework.security.web.access.intercept.AuthorizationFilter@73901815]
+2023-03-08 11:20:06.613  WARN 37892 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-08 11:20:07.022  INFO 37892 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-08 11:20:07.060  INFO 37892 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-08 11:20:07.072  INFO 37892 --- [restartedMain] c.e.C.ContactManagerApplication          : Started ContactManagerApplication in 5.121 seconds (JVM running for 5.666)
+2023-03-08 11:20:18.313  INFO 37892 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-08 11:20:18.314  INFO 37892 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-08 11:20:18.315  INFO 37892 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-03-08 11:20:18.354  INFO 37892 --- [http-nio-8080-exec-2] c.e.C.controller.HomeController          : entered into home page
+2023-03-08 11:20:53.257  INFO 37892 --- [http-nio-8080-exec-9] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:20:53.269  INFO 37892 --- [http-nio-8080-exec-9] c.e.C.controller.UserController          : user dashboard
+2023-03-08 11:20:57.273  INFO 37892 --- [http-nio-8080-exec-7] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:20:57.281  INFO 37892 --- [http-nio-8080-exec-7] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:20:57.285  INFO 37892 --- [http-nio-8080-exec-7] c.e.C.controller.UserController          : user viewed profile
+2023-03-08 11:21:01.122  INFO 37892 --- [http-nio-8080-exec-10] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:01.128  INFO 37892 --- [http-nio-8080-exec-10] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:01.139  INFO 37892 --- [http-nio-8080-exec-10] c.e.C.service.ContactServiceImpl         : contactServiceImpl getAllUserContactsByUserId() method called
+2023-03-08 11:21:01.149  INFO 37892 --- [http-nio-8080-exec-10] c.e.C.controller.UserController          : List of user contacts to view
+2023-03-08 11:21:03.480  INFO 37892 --- [http-nio-8080-exec-8] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:03.488  INFO 37892 --- [http-nio-8080-exec-8] c.e.C.service.ContactServiceImpl         : contactServiceImpl getContactById() method called
+2023-03-08 11:21:03.506  INFO 37892 --- [http-nio-8080-exec-8] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:03.511  INFO 37892 --- [http-nio-8080-exec-8] c.e.C.controller.UserController          : contact with Id: 2of user: moole@gmail.com is displayed
+2023-03-08 11:21:25.812  INFO 37892 --- [http-nio-8080-exec-1] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:25.816  INFO 37892 --- [http-nio-8080-exec-1] c.e.C.service.ContactServiceImpl         : contactServiceImpl getContactById() method called
+2023-03-08 11:21:25.825  INFO 37892 --- [http-nio-8080-exec-1] c.e.C.controller.UserController          : Contact with Id: 2 for update
+2023-03-08 11:21:32.474  INFO 37892 --- [http-nio-8080-exec-5] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:32.482  INFO 37892 --- [http-nio-8080-exec-5] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:32.487  INFO 37892 --- [http-nio-8080-exec-5] c.e.C.service.ContactServiceImpl         : contactServiceImpl getAllUserContactsByUserId() method called
+2023-03-08 11:21:32.493  INFO 37892 --- [http-nio-8080-exec-5] c.e.C.controller.UserController          : List of user contacts to view
+2023-03-08 11:21:35.543  INFO 37892 --- [http-nio-8080-exec-4] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:35.546  INFO 37892 --- [http-nio-8080-exec-4] c.e.C.controller.UserController          : user dashboard
+2023-03-08 11:21:37.817  INFO 37892 --- [http-nio-8080-exec-10] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:37.822  INFO 37892 --- [http-nio-8080-exec-10] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:37.824  INFO 37892 --- [http-nio-8080-exec-10] c.e.C.service.ContactServiceImpl         : contactServiceImpl getAllUserContactsByUserId() method called
+2023-03-08 11:21:37.828  INFO 37892 --- [http-nio-8080-exec-10] c.e.C.controller.UserController          : List of user contacts to view
+2023-03-08 11:21:40.355  INFO 37892 --- [http-nio-8080-exec-3] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:40.358  INFO 37892 --- [http-nio-8080-exec-3] c.e.C.controller.UserController          : user dashboard
+2023-03-08 11:21:42.662  INFO 37892 --- [http-nio-8080-exec-4] c.e.C.service.UserServiceImpl            : UserServiceImpl getByUserName() method called 
+2023-03-08 11:21:42.665  INFO 37892 --- [http-nio-8080-exec-4] c.e.C.controller.UserController          : add contact method executed
+2023-03-08 11:21:55.026  INFO 37892 --- [http-nio-8080-exec-2] c.e.C.controller.HomeController          : entered into home page
+2023-03-08 11:23:42.181  INFO 37892 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-08 11:23:42.184  INFO 37892 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-03-08 11:23:42.190  INFO 37892 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-08 11:23:44.951  INFO 34124 --- [restartedMain] c.e.C.ContactManagerApplication          : Starting ContactManagerApplication using Java 19.0.1 on PSNYXZHCG261 with PID 34124 (C:\Users\Learner_XZHCG261\IdeaProjects\ContactsManager\target\classes started by Learner_XZHCG261 in C:\Users\Learner_XZHCG261\IdeaProjects\ContactsManager)
+2023-03-08 11:23:44.952  INFO 34124 --- [restartedMain] c.e.C.ContactManagerApplication          : No active profile set, falling back to 1 default profile: "default"
+2023-03-08 11:23:45.023  INFO 34124 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-03-08 11:23:45.023  INFO 34124 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-03-08 11:23:45.528  INFO 34124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-08 11:23:45.579  INFO 34124 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 3 JPA repository interfaces.
+2023-03-08 11:23:46.495  INFO 34124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-08 11:23:46.507  INFO 34124 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-08 11:23:46.508  INFO 34124 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-08 11:23:46.594  INFO 34124 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-08 11:23:46.594  INFO 34124 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1570 ms
+2023-03-08 11:23:46.667  WARN 34124 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [6111C4522CD10B4DDB3DCA480BA7511F]
+2023-03-08 11:23:46.815  INFO 34124 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-08 11:23:46.851  INFO 34124 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-08 11:23:46.974  INFO 34124 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-08 11:23:47.052  INFO 34124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-08 11:23:47.314  INFO 34124 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-08 11:23:47.325  INFO 34124 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2023-03-08 11:23:47.916  INFO 34124 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-08 11:23:47.921  INFO 34124 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-08 11:23:48.503  INFO 34124 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5cad9ee1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@440789c6, org.springframework.security.web.context.SecurityContextPersistenceFilter@51412289, org.springframework.security.web.header.HeaderWriterFilter@21e794fe, org.springframework.security.web.authentication.logout.LogoutFilter@4412f0ff, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@e42de0c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3dba60db, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@64d524de, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d5f1f7, org.springframework.security.web.session.SessionManagementFilter@28a18caf, org.springframework.security.web.access.ExceptionTranslationFilter@2870a04b, org.springframework.security.web.access.intercept.AuthorizationFilter@48e1056b]
+2023-03-08 11:23:48.584  WARN 34124 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-08 11:23:48.993  INFO 34124 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-03-08 11:23:49.033  INFO 34124 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-08 11:23:49.048  INFO 34124 --- [restartedMain] c.e.C.ContactManagerApplication          : Started ContactManagerApplication in 4.709 seconds (JVM running for 5.363)
+2023-03-08 11:23:57.883  INFO 34124 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-08 11:23:57.884  INFO 34124 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-03-08 11:23:57.884  INFO 34124 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-03-08 11:23:57.915  INFO 34124 --- [http-nio-8080-exec-2] c.e.C.controller.HomeController          : entered into home page
