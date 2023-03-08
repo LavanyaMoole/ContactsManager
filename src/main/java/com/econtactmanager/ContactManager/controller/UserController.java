@@ -151,7 +151,7 @@ public class UserController {
        model.addAttribute("contact1",c);
        model.addAttribute("title",c.getName());
        }
-       log.info("Particular contact of user is displayed");
+       log.info("contact with"+c.getcId()+ "of user:"+user.getEmail()+" is displayed");
        return "/user/contactDetail";
     }
 
@@ -169,8 +169,8 @@ public class UserController {
            contactService.deleteContact(user,contact);
            user.getContacts().remove(contact);
            userService.saveUser(user);
-           log.info("User Id and contact's user Id matched");
-           log.info("Particular contact of user is deleted");
+           log.info("User Id "+user.getId()+" and contact's user Id "+contact.getUser().getId()+" matched");
+           log.info("contact with "+contact.getcId()+" of user is deleted");
        }
        session.setAttribute("message",new Message("Contact deleted successfully!!!","success"));
         return "/user/viewContacts";
@@ -221,7 +221,7 @@ public class UserController {
             User user= userService.getByUserName(userName);
             contact.setUser(user);
             contactService.saveContact(contact);
-            log.info("Contact updated Successfully!!!");
+            log.info("Contact with "+contact.getcId()+" for updated successfully!!!");
             session.setAttribute("message",new Message("Contact Updated successfully!!!","success"));
         }
         catch (Exception e)
