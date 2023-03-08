@@ -151,7 +151,7 @@ public class UserController {
        model.addAttribute("contact1",c);
        model.addAttribute("title",c.getName());
        }
-       log.info("contact with"+c.getcId()+ "of user:"+user.getEmail()+" is displayed");
+       log.info("contact with Id: "+c.getcId()+ "of user: "+user.getEmail()+" is displayed");
        return "/user/contactDetail";
     }
 
@@ -170,7 +170,7 @@ public class UserController {
            user.getContacts().remove(contact);
            userService.saveUser(user);
            log.info("User Id "+user.getId()+" and contact's user Id "+contact.getUser().getId()+" matched");
-           log.info("contact with "+contact.getcId()+" of user is deleted");
+           log.info("contact with Id: "+contact.getcId()+" of user is deleted");
        }
        session.setAttribute("message",new Message("Contact deleted successfully!!!","success"));
         return "/user/viewContacts";
@@ -184,7 +184,7 @@ public class UserController {
         Optional<Contact> optContact=contactService.getContactById(cId);
         Contact contact=optContact.get();
         model.addAttribute("contact",contact);
-        log.info("Contact for update");
+        log.info("Contact with Id: "+contact.getcId()+" for update");
         return "/user/updateContactForm";
 
     }
@@ -221,7 +221,7 @@ public class UserController {
             User user= userService.getByUserName(userName);
             contact.setUser(user);
             contactService.saveContact(contact);
-            log.info("Contact with "+contact.getcId()+" for updated successfully!!!");
+            log.info("Contact with Id: "+contact.getcId()+" updated successfully!!!");
             session.setAttribute("message",new Message("Contact Updated successfully!!!","success"));
         }
         catch (Exception e)

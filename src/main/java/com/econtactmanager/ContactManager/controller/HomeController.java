@@ -42,6 +42,7 @@ public class HomeController
     public String home(Model model)
     {
         model.addAttribute("title","Home e-Contact Manager");
+        log.info("entered into home page");
         return "home";
     }
     //About page
@@ -49,6 +50,7 @@ public class HomeController
     public String about(Model model)
     {
         model.addAttribute("title","About e-Contact Manager");
+        log.info("entered into about page");
         return "about";
     }
     //user signup page
@@ -106,6 +108,7 @@ Admin admin=adminService.getAdminByEmail(email);
         System.out.println("User"+user);
         User result=userService.saveUser(user);
         model.addAttribute("user",new User());
+        log.info("User: "+user.getEmail()+" register successfully");
         session.setAttribute("message",new Message("Successfully Registered!!","alert-success"));
         return "signup";
 
@@ -177,6 +180,7 @@ Admin admin=adminService.getAdminByEmail(email);
             System.out.println("Admin"+admin);
             Admin result=adminService.saveAdmin(admin);
             model.addAttribute("admin",new Admin());
+            log.info("Admin: "+admin.getEmail()+" registered successfully!!");
             session.setAttribute("message",new Message("Successfully Registered!!","alert-success"));
 
             return "/Admin/adminSignup";
