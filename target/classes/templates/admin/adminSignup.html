@@ -14,7 +14,7 @@
             <p class="text-center" th:text="${session.message.content}"></p>
             <th:block th:text="${#session.removeAttribute('message')}"></th:block>
           </div>
-          <h1 class="text-center">Register Here!!!</h1>
+          <h1 class="text-center">Admin Register Here!!!</h1>
           <form action="" th:action="@{/AdminRegisterProcess}" method="post" th:object="${admin}" enctype="multipart/form-data">
             <!-- name-->
             <div class="mb-3">
