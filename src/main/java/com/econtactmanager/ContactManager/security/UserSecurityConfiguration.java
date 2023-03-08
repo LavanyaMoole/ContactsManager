@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @Order(1)
-public class SecurityConfiguration {
+public class UserSecurityConfiguration {
 
     @Autowired
    private UserDetailsServiceImpl userDetailsService;
