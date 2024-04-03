@@ -6,6 +6,6 @@ phone numbers, email address, designation, about information of contact, date of
 ## Tools&Technologies
 Java,Exception handling,OOPS,Spring MVC, Spring Boot, Spring Security, Spring Data Jpa,Thymeleaf, HTML, CSS, SQL.
 JavaScript,MySql database, Hibernate,Maven,GIT,GitHub,intellij IDE,JUnit,bootstrap,
-## Future plans for the appliaction
+## Future plans for the application
 Implement Admin module,where a admin can login and delete the users who are inactive.
 Forgot password feature.
